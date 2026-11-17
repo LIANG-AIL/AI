@@ -1,6 +1,9 @@
 name: Superagent Trigger
 on:
   workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
 jobs:
   comment:
     runs-on: ubuntu-latest
