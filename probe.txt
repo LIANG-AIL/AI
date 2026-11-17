@@ -1,0 +1,14 @@
+name: Superagent Trigger
+on:
+  workflow_dispatch:
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner
+            const repo = context.repo.repo
+            const issue = await github.rest.issues.create({ owner, repo, title: 'Copy fix check', body: 'End-to-end check for dsh-superagent.' })
+            await github.rest.issues.createComment({ owner, repo, issue_number: issue.data.number, body: '@LIANG-AIL README 里的 Welcomme 拼错了，请改成 Welcome。' })
